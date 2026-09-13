@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站建设中 - 敬请期待</title>
+
+    <!-- 引入附件中的 Font Awesome 图标库（含字体文件） -->
+    <link rel="stylesheet" href="素材/font-awesome.min.css">
+
+    <style>
+        /* ============ 引入附件中的字体 ============ */
+        /* 中文书法字体 */
+        @font-face {
+            font-family: 'ShuFa';
+            src: url('素材/fonts/书法.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        /* 英文手写体 */
+        @font-face {
+            font-family: 'PinyonScript';
+            src: url('素材/fonts/PinyonScript-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* ============ 基础重置 ============ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 背景装饰光点 */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::before {
+            width: 400px;
+            height: 400px;
+            background: #e94560;
+            top: -100px;
+            left: -100px;
+        }
+        body::after {
+            width: 400px;
+            height: 400px;
+            background: #533483;
+            bottom: -120px;
+            right: -120px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============ 上方：一句文字（主标题） ============ */
+        .hero-title {
+            font-family: 'ShuFa', 'STKaiti', 'KaiTi', serif;
+            font-size: 68px;
+            letter-spacing: 8px;
+            line-height: 1.3;
+            background: linear-gradient(180deg, #ffffff 0%, #ffd6a5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            animation: fadeInDown 1s ease both;
+        }
+
+        .hero-subtitle {
+            font-family: 'PinyonScript', cursive;
+            font-size: 40px;
+            color: #f5c17c;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+
+        /* ============ 中部：左右两栏（图标 + 文字） ============ */
+        .middle {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 70px;
+        }
+
+        .middle .item {
+            flex: 1;
+            min-width: 240px;
+            max-width: 340px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .middle .item:last-child {
+            animation-delay: 0.6s;
+        }
+        .middle .item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            border-color: rgba(245, 193, 124, 0.5);
+        }
+
+        /* 文字上方的图标（圆形图标徽章） */
+        .icon-badge {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #e94560 0%, #f5c17c 100%);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.4);
+        }
+        .icon-badge.blue {
+            background: linear-gradient(135deg, #533483 0%, #7ec8e3 100%);
+            box-shadow: 0 10px 25px rgba(83, 52, 131, 0.45);
+        }
+
+        .item h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            color: #ffd6a5;
+        }
+        .item p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        /* ============ 分隔装饰 ============ */
+        .divider {
+            width: 80px;
+            height: 3px;
+            margin: 0 auto 20px;
+            background: linear-gradient(90deg, transparent, #f5c17c, transparent);
+            border-radius: 2px;
+        }
+
+        /* ============ 下方：平台支持 ============ */
+        .support-title {
+            font-size: 30px;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+            color: #ffffff;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+        .support-title .en {
+            display: block;
+            font-family: 'PinyonScript', cursive;
+            font-size: 30px;
+            color: #f5c17c;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        /* 四个图标 + 文字说明 */
+        .platforms {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .platforms .platform {
+            width: 140px;
+            animation: fadeInUp 1s ease both;
+        }
+        .platforms .platform:nth-child(1) { animation-delay: 0.8s; }
+        .platforms .platform:nth-child(2) { animation-delay: 0.95s; }
+        .platforms .platform:nth-child(3) { animation-delay: 1.1s; }
+        .platforms .platform:nth-child(4) { animation-delay: 1.25s; }
+
+        .platform .p-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+        .platform:hover .p-icon {
+            transform: scale(1.1) rotate(8deg);
+            background: rgba(245, 193, 124, 0.15);
+            border-color: #f5c17c;
+        }
+        /* 为不同平台图标着色 */
+        .platform.html5 .p-icon  { color: #e34f26; }
+        .platform.css3 .p-icon   { color: #1572b6; }
+        .platform.chrome .p-icon { color: #fbbc05; }
+        .platform.firefox .p-icon{ color: #ff7139; }
+
+        .platform span {
+            display: block;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .platform small {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 6px;
+        }
+
+        /* ============ 页脚 ============ */
+        .footer {
+            margin-top: 80px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+        }
+
+        /* ============ 动画 ============ */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ 响应式 ============ */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 44px; letter-spacing: 4px; }
+            .hero-subtitle { font-size: 30px; }
+            .middle { gap: 24px; }
+            .platforms { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== 上方：一句文字 ===== -->
+        <h1 class="hero-title">网站建设中</h1>
+        <p class="hero-subtitle">Coming Soon</p>
+
+        <!-- ===== 中部：左右两栏，图标在上、文字在下 ===== -->
+        <div class="middle">
+            <div class="item">
+                <div class="icon-badge">
+                    <i class="fa fa-clock-o"></i>
+                </div>
+                <h3>正在建设中</h3>
+                <p>我们正在全力以赴地搭建全新网站，为您呈现更优质的内容与体验。</p>
+            </div>
+            <div class="item">
+                <div class="icon-badge blue">
+                    <i class="fa fa-rocket"></i>
+                </div>
+                <h3>敬请期待</h3>
+                <p>全新页面即将上线，感谢您的耐心等待与一路支持，敬请持续关注。</p>
+            </div>
+        </div>
+
+        <!-- ===== 下方：平台支持 ===== -->
+        <div class="divider"></div>
+        <h2 class="support-title">
+            平台支持
+            <span class="en">Platform Support</span>
+        </h2>
+
+        <!-- 四个图标 + 文字说明 -->
+        <div class="platforms">
+            <div class="platform html5">
+                <div class="p-icon"><i class="fa fa-html5"></i></div>
+                <span>HTML5</span>
+                <small>语义化结构</small>
+            </div>
+            <div class="platform css3">
+                <div class="p-icon"><i class="fa fa-css3"></i></div>
+                <span>CSS3</span>
+                <small>动画与样式</small>
+            </div>
+            <div class="platform chrome">
+                <div class="p-icon"><i class="fa fa-chrome"></i></div>
+                <span>Chrome</span>
+                <small>浏览器支持</small>
+            </div>
+            <div class="platform firefox">
+                <div class="p-icon"><i class="fa fa-firefox"></i></div>
+                <span>Firefox</span>
+                <small>浏览器支持</small>
+            </div>
+        </div>
+
+        <!-- ===== 页脚 ===== -->
+        <p class="footer">© 2026 网站建设中 · 敬请期待</p>
+    </div>
+</body>
+</html>
